@@ -9,7 +9,7 @@
       return {
         scope: {},
         bindToController: {},
-        controller: function() {},
+        controller: 'FooterCtrl',
         controllerAs: 'ctrl',
         templateUrl: 'components/footer/footer.html'
       };
