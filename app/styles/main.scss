@@ -14,6 +14,15 @@ $icons-font-path: '/bower_components/Materialize/font/material-design-icons/';
   justify-content: center;
 }
 
+@media(min-width: 768px){
+  .flex {
+    flex-flow: row wrap;
+    align-items: center;
+    align-self: center;
+    justify-content: flex-start;
+  }
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -25,3 +34,5 @@ $icons-font-path: '/bower_components/Materialize/font/material-design-icons/';
 @import "../components/main/main.scss";
 @import "../components/_shared/nav/nav.scss";
 @import "../components/_shared/footer/footer.scss";
+
+@import "../components/player-list/player-card/player-card.scss";
