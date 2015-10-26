@@ -1,8 +1,16 @@
 footer {
 
+  footer.page-footer {
+    // padding-top: 20px;
+    margin-top: 0px;
+  }
 
+  footer.page-footer {
+    @extend .dark-color;
+  }
 
-
-
+  footer.page-footer .footer-copyright {
+    background-color: darken($dark-color, 5%);
+  }
 
 }
