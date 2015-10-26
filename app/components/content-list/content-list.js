@@ -1,19 +1,17 @@
-(function(){
+(function() {
 
   'use strict';
 
   angular.module('partnerApp')
 
-    .directive('appFooter', function(){
-
+    .directive('contentList', function(){
       return {
         scope: {},
         bindToController: {},
-        controller: 'FooterCtrl',
+        controller: function() {},
         controllerAs: 'ctrl',
-        templateUrl: 'components/footer/footer.html'
+        templateUrl: 'components/content-list/content-list.html'
       };
-
     });
 
 })();

@@ -23,5 +23,5 @@ $icons-font-path: '/bower_components/Materialize/font/material-design-icons/';
 
 @import "_colors.scss";
 @import "../components/main/main.scss";
-@import "../components/nav/nav.scss";
-@import "../components/footer/footer.scss";
+@import "../components/_shared/nav/nav.scss";
+@import "../components/_shared/footer/footer.scss";
