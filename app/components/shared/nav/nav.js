@@ -17,7 +17,7 @@
 
         },
         controllerAs: 'ctrl',
-        templateUrl: 'components/_shared/nav/nav.html'
+        templateUrl: 'components/shared/nav/nav.html'
       };
     });
 

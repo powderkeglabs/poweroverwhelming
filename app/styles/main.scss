@@ -1,5 +1,5 @@
-$roboto-font-path: '/styles/fonts/';
-$icons-font-path: '/styles/fonts/';
+$roboto-font-path: 'fonts/';
+$icons-font-path: 'fonts/';
 
 
 @import "_colors.scss";
@@ -9,8 +9,8 @@ $icons-font-path: '/styles/fonts/';
 // endbower
 
 @import "../components/main/main.scss";
-@import "../components/_shared/nav/nav.scss";
-@import "../components/_shared/footer/footer.scss";
+@import "../components/shared/nav/nav.scss";
+@import "../components/shared/footer/footer.scss";
 
 @import "../components/player-list/player-list.scss";
 @import "../components/player-list/player-card/player-card.scss";
