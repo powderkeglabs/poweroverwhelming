@@ -8,7 +8,7 @@
       var PlayerService = {};
 
       PlayerService.getPlayers = function(){
-        return $http.get('/players.json');
+        return $http.get('players.json');
       };
 
       // ProxyService.proxy = {};
