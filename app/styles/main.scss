@@ -18,6 +18,10 @@ html {
   color: $text-color-primary;
 }
 
+body {
+  background-color: color('grey', 'lighten-4');
+}
+
 header {
   background-color: $primary-color;
   color: $text-color-secondary;
