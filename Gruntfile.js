@@ -326,18 +326,37 @@ module.exports = function (grunt) {
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>',
-          dest: '<%= config.dist %>',
-          src: [
-            '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
-            '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
-          ]
-        }]
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= config.app %>',
+            dest: '<%= config.dist %>',
+            src: [
+              '*.{ico,png,txt}',
+              'images/{,*/}*.webp',
+              '{,*/}*.html',
+              'styles/fonts/{,*/}*.*',
+              'components/**/*.{html,js}',
+              'services/**/*.js',
+              'app.js',
+              'players.json'
+            ]
+          },
+          // Copy Materialize fonts from temp dir to dist
+          {
+            expand: true,
+            flatten: true,
+            src: ['.tmp/styles/fonts/**'],
+            dest: '<%= config.dist %>/styles/fonts/',
+            filter: 'isFile'
+          }
+        ]
+      },
+      fonts: {
+        files: [
+          {src: 'bower_components/Materialize/font/**/*', dest: '.tmp/styles/fonts', flatten: true, expand: true, filter: 'isFile'}
+        ]
       }
     },
 
@@ -345,12 +364,14 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'babel:dist',
+        'copy:fonts',
         'sass'
       ],
       test: [
         'babel'
       ],
       dist: [
+        'copy:fonts',
         'babel',
         'sass',
         'imagemin',
