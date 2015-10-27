@@ -1,3 +1,7 @@
+nav {
+  background-color: $primary-color;
+}
+
 navigation {
   a.brand-logo {
     display: flex;
@@ -26,11 +30,11 @@ navigation {
     border-bottom: 1px solid #ddd;
     height: 150px;
     text-align: center;
-    background-color: $fill-color;
+    background-color: $primary-color;
   }
 
   li.side-nav-brand:hover {
-    background-color: $fill-color;
+    background-color: $primary-color;
   }
 
   @media (min-width: 600px) {

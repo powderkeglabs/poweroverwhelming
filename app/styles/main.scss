@@ -5,6 +5,23 @@ $icons-font-path: '/bower_components/Materialize/font/material-design-icons/';
 @import "bower_components/Materialize/sass/materialize.scss";
 // endbower
 
+@import "_colors.scss";
+@import "../components/main/main.scss";
+@import "../components/_shared/nav/nav.scss";
+@import "../components/_shared/footer/footer.scss";
+
+@import "../components/player-list/player-card/player-card.scss";
+
+
+
+html {
+  color: $text-color-primary;
+}
+
+header {
+  background-color: $primary-color;
+  color: $text-color-secondary;
+}
 
 .flex {
   display: flex;
@@ -29,10 +46,3 @@ $icons-font-path: '/bower_components/Materialize/font/material-design-icons/';
   color: #000;
   padding: 0.2em 0;
 }
-
-@import "_colors.scss";
-@import "../components/main/main.scss";
-@import "../components/_shared/nav/nav.scss";
-@import "../components/_shared/footer/footer.scss";
-
-@import "../components/player-list/player-card/player-card.scss";
