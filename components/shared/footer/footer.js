@@ -11,7 +11,7 @@
         bindToController: {},
         controller: 'FooterCtrl',
         controllerAs: 'ctrl',
-        templateUrl: 'components/_shared/footer/footer.html'
+        templateUrl: 'components/shared/footer/footer.html'
       };
 
     });
