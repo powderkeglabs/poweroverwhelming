@@ -8,12 +8,7 @@
       return {
         scope: {},
         bindToController: {
-          name: '@',
-          bnetid: '@',
-          server: '@',
-          race: '@',
-          league: '@',
-          mode: '@'
+          player: '='
         },
         controller: function() {},
         controllerAs: 'ctrl',

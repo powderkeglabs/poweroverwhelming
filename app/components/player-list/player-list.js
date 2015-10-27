@@ -8,7 +8,7 @@
       return {
         scope: {},
         bindToController: {},
-        controller: function() {},
+        controller: 'PlayerListCtrl',
         controllerAs: 'ctrl',
         templateUrl: 'components/player-list/player-list.html'
       };

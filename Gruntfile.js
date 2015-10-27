@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       babel: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
+        files: ['<%= config.app %>/scripts/{,*/}*.js', '<%= config.app %>/**/*.js'],
         tasks: ['babel:dist']
       },
       babelTest: {

@@ -9,13 +9,7 @@
 
     <div class="row">
 
-      <player-card name="MojoJJ" bnetid="1414" server="NA" race="Protoss" league="P" mode="1v1"></player-card>
-      <player-card name="Flanksteak" bnetid="1414" server="NA" race="Protoss" league="P" mode="1v1"></player-card>
-      <player-card name="Day9" bnetid="1414" server="SEA" race="Protoss" league="P" mode="1v1"></player-card>
-
-      <player-card name="Stephano" bnetid="1414" server="EU" race="Protoss" league="P" mode="1v1"></player-card>
-      <player-card name="BossToss" bnetid="1414" server="KR" race="Protoss" league="P" mode="1v1"></player-card>
-      <player-card name="HuK" bnetid="1414" server="SEA" race="Protoss" league="P" mode="1v1"></player-card>
+      <player-card ng-repeat="player in ctrl.players" player="player"></player-card>
 
     </div>
   </div>
