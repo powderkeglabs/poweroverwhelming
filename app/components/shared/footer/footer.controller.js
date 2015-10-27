@@ -6,6 +6,8 @@
 
     .controller('FooterCtrl', [function(){
 
+    	//var ctrl = this;
+    	//ctrl.name="frank";
 
     }]);
 
