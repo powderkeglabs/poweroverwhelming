@@ -11,6 +11,12 @@
         ctrl.players = response.data;
         console.log(ctrl.players);
       });
+
+      //Materialize tabs initializtion
+      $(document).ready(function(){
+        $('ul.tabs').tabs();
+      });
+
     }]);
 
 })();

@@ -1,5 +1,5 @@
 $primary-color: #2196F3;
-$primary-color-light: #2196F3;
+$primary-color-light: #BBDEFB;
 $primary-color-dark: #1976D2;
 $accent-color: #FFD740;
 $accent-color-light: #FFEE58;
@@ -9,6 +9,12 @@ $primary-color-rgba-light: rgba(33, 150, 244, 0.2);
 $text-color-primary: #212121;
 $text-color-secondary: #ffffff;
 
+$tabs-underline-color: $accent-color;
+$tabs-text-color: $primary-color-light;
+$tabs-bg-color: $primary-color;
+
+$link-color: darken($accent-color, 10%);
+
 a {
   color: $accent-color;
 }
@@ -17,4 +23,8 @@ a {
   height: 100%;
   width: 100%;
   background-color: $primary-color-rgba-light;
+}
+
+.tabs .tab a.active {
+  color: $accent-color;
 }

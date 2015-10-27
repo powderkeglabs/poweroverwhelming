@@ -1,15 +1,18 @@
 $roboto-font-path: '/bower_components/Materialize/font/roboto/';
 $icons-font-path: '/bower_components/Materialize/font/material-design-icons/';
 
+
+@import "_colors.scss";
+
 // bower:scss
 @import "bower_components/Materialize/sass/materialize.scss";
 // endbower
 
-@import "_colors.scss";
 @import "../components/main/main.scss";
 @import "../components/_shared/nav/nav.scss";
 @import "../components/_shared/footer/footer.scss";
 
+@import "../components/player-list/player-list.scss";
 @import "../components/player-list/player-card/player-card.scss";
 
 
