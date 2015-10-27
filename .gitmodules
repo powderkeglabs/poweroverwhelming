@@ -1,0 +1,4 @@
+[submodule "dist"]
+	path = dist
+	url = git@github.com:powderkeglabs/practice-partners.git
+	branch = gh-pages
