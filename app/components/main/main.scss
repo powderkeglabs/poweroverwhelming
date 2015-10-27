@@ -1,0 +1,18 @@
+header {
+  height: 400px;
+  width: 100%;
+  background-image: url('/images/index.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+header .container,
+header .row
+{
+  height: 100%;
+}
+
+header .heading {
+  font-weight: 400;
+  color: $text-color-secondary;
+}

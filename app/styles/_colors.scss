@@ -4,9 +4,17 @@ $primary-color-dark: #1976D2;
 $accent-color: #FFD740;
 $accent-color-light: #FFEE58;
 
+$primary-color-rgba-light: rgba(33, 150, 244, 0.2);
+
 $text-color-primary: #212121;
 $text-color-secondary: #ffffff;
 
 a {
   color: $accent-color;
+}
+
+.fill-overlay {
+  height: 100%;
+  width: 100%;
+  background-color: $primary-color-rgba-light;
 }
