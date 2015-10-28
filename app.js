@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('partnerApp', ['ui.router'])
+  angular.module('partnerApp', ['ui.router', 'firebase'])
 
   .config(function($stateProvider, $urlRouterProvider){
 
