@@ -1,77 +1,64 @@
-<section class="player-form">
-<div class="container">
 <form class="col s12">
-   	  <div class="row">
-        <div class="col s12">
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title grey-text text-darken-4">Sign up</span>
-              <p>and meet your archon partner today</p>
+  <div class="card">
+    <div class="card-content">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="bnetId" type="text" class="validate">
+          <label class="inactive" for="bnetId">Battle Net ID</label>
+        </div>
 
-			<div class="row">
-				<div class="input-field col s6">
-					<input id="bnetId" type="text" class="validate">
-					<label class="inactive" for="bnetId">Battle Net ID</label>
-				</div>
+        <div class="input-field col s6">
+          <input id="idNumber" type="number" class="validate">
+          <label class="inactive" for="idNumber">ID Number</label>
+        </div>
+      </div>
 
-				<div class="input-field col s6">
-					<input id="idNumber" type="number" class="validate">
-					<label class="inactive" for="idNumber">ID Number</label>
-				</div>
-			</div>  
+      <div class="row">
+        <div class="input-field col s6">
+          <select>
+            <option value="" disabled selected>League</option>
+            <option value="bronze">Bronze</option>
+            <option value="silver">Silver</option>
+            <option value="gold">Gold</option>
+            <option value="platinum">Platinum</option>
+            <option value="diamond">Diamond</option>
+            <option value="master">Master</option>
+            <option value="grandmaster">Grandmaster</option>
+          </select>
+        </div>
 
-			<div class="row">
-				<div class="input-field col s6">
-				<select>
-					<option value="" disabled selected>Select your league</option>
-					<option value="bronze">Bronze</option>
-					<option value="silver">Silver</option>
-					<option value="gold">Gold</option>
-					<option value="platinum">Platinum</option>
-					<option value="diamond">Diamond</option>
-					<option value="master">Master</option>
-					<option value="grandmaster">Grandmaster</option>
-				</select>
-				</div>
+        <div class="input-field col s6">
+          <select>
+            <option value="" disabled selected>Region</option>
+            <option value="na">North America</option>
+            <option value="eu">Europe</option>
+            <option value="kr">Korea</option>
+            <option value="sea">South-East Asia</option>
+          </select>
+        </div>
+      </div>
 
-				<div class="input-field col s6">
-				<select>
-					<option value="" disabled selected>Select your region</option>
-					<option value="na">North America</option>
-					<option value="eu">Europe</option>
-					<option value="kr">Korea</option>
-					<option value="sea">South-East Asia</option>
-				</select>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="profileUrl" type="url" class="validate">
-					<label class="inactive" for="profileUrl">Profile URL</label>
-				</div>
-			</div>
-
-
-
-			<div class="row">
-		        <div class="input-field col s12">
-		          <textarea id="textarea1" class="materialize-textarea"></textarea>
-		          <label for="textarea1">Tell us what you're looking for</label>
-		        </div>
-		    </div>
-
-		   	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-			    <i class="material-icons right">send</i>
-			</button>
-
-            </div>
-          </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="profileUrl" type="url" class="validate">
+          <label class="inactive" for="profileUrl">Profile URL</label>
         </div>
       </div>
 
 
 
-</form>	
-</div>
-</section>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Tell us what you're looking for</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+
+    </div>
+  </div>
+
+</form>
