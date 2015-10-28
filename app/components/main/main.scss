@@ -1,9 +1,10 @@
 header {
   height: 400px;
   width: 100%;
-  background-image: url('../images/index.jpg');
-  background-position: center;
-  background-size: cover;
+  // background-image: url('../images/index.jpg');
+  // background-position: center;
+  // background-size: cover;
+  background-color: $primary-color;
 }
 
 header .container,
@@ -13,6 +14,11 @@ header .row
 }
 
 header .heading {
-  font-weight: 400;
-  color: $text-color-secondary;
+  font-weight: 600;
+  color: $text-color-primary;
+  font-size: 18px;
+}
+
+.card-panel.start-panel {
+  background-color: color('grey', 'lighten-5');
 }
