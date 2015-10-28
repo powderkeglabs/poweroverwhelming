@@ -1,5 +1,60 @@
-// player-card {
-//   flex: 0 1 30%;
-//   // padding-left:10px;
-//   padding-right:10px;
+player-card {
+  flex: 0 1 31%;
+}
+
+.player-card.card {
+  height: 250px;
+}
+
+.player-card a.profile-url{
+  color: $text-color-primary;
+}
+
+// .player-card p {
+//   height: 250px;
 // }
+
+.player-card.Zerg,
+.player-card.zerg {
+  background-color: color("purple", "lighten-2");
+}
+
+.player-card.Protoss,
+.player-card.protoss {
+  background-color: color("amber", "lighten-2");
+}
+
+.player-card.Terran,
+.player-card.terran {
+  background-color: color("red", "lighten-2");
+}
+
+.player-card .status {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player-card .title {
+  flex: 0 1 auto;
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-color-primary;
+}
+
+.player-card .online {
+  flex: 0 1 auto;
+  text-align: right;
+  color: color('green', 'accent-4');
+}
+
+.player-card span.league {
+  display: block;
+  color: $text-color-primary;
+  font-weight: 600;
+}
+
+.player-card p.text {
+  color: color('grey', 'darken-3');
+}

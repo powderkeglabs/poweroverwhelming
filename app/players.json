@@ -4,19 +4,50 @@
   "server": "NA",
   "race": "Protoss",
   "league": "Bronze",
-  "mode": "1v1"
+  "mode": "1v1",
+  "text":"Available at Target Shellback Selena Gomez dvd Grammy. Olivia Benson Country Music Hall of Fame refrigerator.",
+  "online": true
 },{
   "name": "Flanksteak",
   "bnetid": "512",
   "server": "NA",
   "race": "Zerg",
   "league": "Gold",
-  "mode": "1v1"
+  "mode": "1v1",
+  "text":"Light you belong with me. As I do you belong with me. For me I think vote for."
 },{
   "name": "DayNine",
   "bnetid": "144",
   "server": "NA",
   "race": "Terran",
   "league": "Platinum",
-  "mode": "1v1"
+  "mode": "1v1",
+  "url":"http://us.battle.net/sc2/en/profile/999000/1/DayNine/",
+  "text":"Taylor Tree Paine the fans shame on me Karlie Kloss. Keds ex Subway girl in the dress crop tops Diet Coke. Presumptuous awkward guitar cheer captain Lily Aldridge."
+},
+{
+  "name": "MojoJJ",
+  "bnetid": "1512",
+  "server": "NA",
+  "race": "Protoss",
+  "league": "Bronze",
+  "mode": "1v1",
+  "text":"Max Martin Lily Aldridge Hailee Steinfeld Lena. Dunham club red girl in the dress. You shoulda known baking Subway Natalie 1989. Thank you for saying that Diet Coke trouble music Hailee Steinfeld."
+},{
+  "name": "Flanksteak",
+  "bnetid": "512",
+  "server": "NA",
+  "race": "Zerg",
+  "league": "Gold",
+  "mode": "1v1",
+  "online": true,
+  "text":"Country girlnextdooritis write a song about Law & Order SVU Olivia. Benson thanks for sticking with me for so long."
+},{
+  "name": "DayNine",
+  "bnetid": "144",
+  "server": "NA",
+  "race": "Terran",
+  "league": "Platinum",
+  "mode": "1v1",
+  "text":"Available at Target Shellback Selena Gomez dvd Grammy. Olivia Benson Country Music Hall of Fame refrigerator."
 }]

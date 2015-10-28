@@ -13,7 +13,7 @@ $icons-font-path: 'fonts/';
 @import "../components/shared/footer/footer.scss";
 
 @import "../components/player-list/player-list.scss";
-@import "../components/player-list/player-card/player-card.scss";
+@import "../components/player-card/player-card.scss";
 
 
 
@@ -53,4 +53,3 @@ header {
   color: #000;
   padding: 0.2em 0;
 }
-

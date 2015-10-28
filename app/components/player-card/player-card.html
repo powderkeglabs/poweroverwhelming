@@ -1,14 +1,12 @@
-<div class="col s12 m4">
-  <div class="card player-card blue-grey darken-1">
-    <div class="card-content white-text">
-      <span class="card-title">{{ctrl.player.name}}#{{ctrl.player.bnetid}} - {{ctrl.player.server}}</span>
-      <p>{{ctrl.player.race}} - {{ctrl.player.league}}</p>
-      <p>I am a very simple card. I am good at containing small bits of information.
-      I am convenient because I require little markup to use effectively.</p>
+<div class="card player-card" ng-class="ctrl.player.race">
+  <div class="card-content">
+    <div class="status">
+      <span class="title" title="click to view battle.net profile">
+        <a class="profile-url" ng-href="{{ctrl.player.url}}">{{ctrl.player.name}}#{{ctrl.player.bnetid}}</a>
+      </span>
+      <span class="online" ng-if="ctrl.player.online" title="This player is online"><i class="material-icons">power_settings_new</i></span>
     </div>
-    <!-- <div class="card-action">
-      <a href="#">This is a link</a>
-      <a href="#">This is a link</a>
-    </div> -->
+    <span class="league">{{ctrl.player.league}}</span>
+    <p class="text">{{ctrl.player.text}}</p>
   </div>
 </div>
