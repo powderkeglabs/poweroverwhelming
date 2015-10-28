@@ -12,7 +12,7 @@
         },
         controller: function() {},
         controllerAs: 'ctrl',
-        templateUrl: 'components/player-list/player-card/player-card.html'
+        templateUrl: 'components/player-card/player-card.html'
       };
     });
 

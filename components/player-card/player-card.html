@@ -1,0 +1,12 @@
+<div class="card player-card" ng-class="ctrl.player.race">
+  <div class="card-content">
+    <div class="status">
+      <span class="title" title="click to view battle.net profile">
+        <a class="profile-url" ng-href="{{ctrl.player.url}}">{{ctrl.player.name}}#{{ctrl.player.bnetid}}</a>
+      </span>
+      <span class="online" ng-if="ctrl.player.online" title="This player is online"><i class="material-icons">power_settings_new</i></span>
+    </div>
+    <span class="league">{{ctrl.player.league}}</span>
+    <p class="text">{{ctrl.player.text}}</p>
+  </div>
+</div>

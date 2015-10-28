@@ -22,7 +22,9 @@
     </div>
 
     <div class="row">
-      <player-card ng-repeat="player in ctrl.players" player="player"></player-card>
+      <div class="col s12 flex">
+        <player-card ng-repeat="player in ctrl.players" player="player"></player-card>
+      </div>
     </div>
   </div>
 
