@@ -8,11 +8,7 @@
       return {
         scope: {},
         bindToController: {},
-        controller: function() {
-          $(document).ready(function() {
-          $('select').material_select();
-        });
-        },
+        controller: 'PlayerFormCtrl',
         controllerAs: 'ctrl',
         templateUrl: 'components/player-form/player-form.html'
       };

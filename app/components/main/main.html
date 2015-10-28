@@ -18,38 +18,7 @@
             <player-card></player-card>
           </div> -->
 
-          <div class="card-panel start-panel black-text" ng-hide="ctrl.auth">
-            <div class="row">
-              <div class="col s12">
-                <span class="heading">Find your perfect ARCHON partner!</span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="name" type="text" placeholder="MojoJJ#124">
-                <label class="active" for="name">Hi, my Battle.net ID is ...</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <select>
-                  <option value="" disabled selected>Select Race</option>
-                  <option value="1">Zerg</option>
-                  <option value="2">Terran</option>
-                  <option value="3">Protoss</option>
-                </select>
-                <label>I'm seeking a ...</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col s12">
-                <a class="waves-effect waves-light btn amber">Let's Merge!</a>
-              </div>
-            </div>
-
-          </div>
+          <player-form heading="Find your perfect ARCHON partner!"></player-form>
 
         </div>
       </div>
