@@ -4,38 +4,39 @@
 
   angular.module('partnerApp')
 
-    .service('PlayerService', ['$http', function($http){
-      var PlayerService = {};
+    .service('PlayerService', ['$http', '$firebaseAuth', '$firebaseArray', function($http, $firebaseAuth, $firebaseArray){
 
-      PlayerService.getPlayers = function(){
-        return $http.get('players.json');
+      var ref = new Firebase('https://crackling-inferno-4162.firebaseio.com/players');
+      var auth = $firebaseAuth(ref);
+      var PlayerService = { auth: auth.$getAuth() };
+
+      // Login anonymously only if not already logged in
+      // @TODO: Test for auth expiry
+      PlayerService.authenticate = function(){
+        if (!PlayerService.auth) {
+          auth.$authAnonymously().then(function(data){
+            PlayerService.auth = data;
+          }).catch(function(err){
+            console.log('Error authenticating', err);
+          });
+        }
       };
 
-      // ProxyService.proxy = {};
-      //
-      // ProxyService.updateProxy = function(proxy){
-      //   ProxyService.proxy = proxy;
-      // };
-      //
-      // // Submit the Proxy
-      // ProxyService.submitProxy = function(proxy){
-      //
-      //   // Clone because we will be manipulating the proxy form for submission
-      //   var proxyObj = angular.copy(proxy);
-      //
-      //   // We want the candidate name to show up correctly in the form
-      //   if (proxyObj.candidate === 'Other' && proxy.otherCandidateName){
-      //     proxyObj.candidate = proxy.otherCandidateName;
-      //   }
-      //
-      //   // We want the candidate name to show up correctly in the form
-      //   if (proxyObj.holder === 'Other' && proxy.otherHolderName){
-      //     proxyObj.holder = proxy.otherHolderName;
-      //   }
-      //
-      //   console.log(proxy, proxyObj);
-      //   return $http.post('/api/Proxy', proxyObj);
-      // };
+      // Deauthenticate
+      PlayerService.deAuthenticate = function(){
+        auth.$unauth();
+      };
+
+      // Get the list of players
+      PlayerService.getPlayers = function(){
+        return $firebaseArray(ref);
+      };
+
+      // Watches for changes to auth and maintains state across sessions
+      auth.$onAuth(function(authData){
+        PlayerService.auth = authData;
+        console.log('Auth Changed', PlayerService.auth);
+      });
 
       return PlayerService;
     }]);

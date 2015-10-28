@@ -32,5 +32,6 @@
     "browser": true,
     "element": true,
     "by": true
-  }
+  },
+  "predef": ["Firebase"]
 }
