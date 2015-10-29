@@ -8,7 +8,6 @@
 
       var ref = new Firebase(FIREBASE_URL + '/players');
       var auth = $firebaseAuth(ref);
-      var list = $firebaseArray(ref);
       var playerRef;
 
       // Initilaize the service
@@ -25,8 +24,7 @@
 
         // Check if user is already authenticated
         if (PlayerService.auth) {
-          console.error("User already logged in");
-          return;
+          return console.error("User already logged in");
         }
 
         // Login anonymously and save the player data
@@ -43,9 +41,9 @@
           return newPlayer.$save(); //save player data
         })
 
-        // Get that saved record and bind it
+        // Get that saved record and bind it to `currentPlayer`
         .then(function(ref){
-          PlayerService.currentPlayer = list.$getRecord(ref.key());
+          _setCurrentPlayer(ref.key());
           console.log("Current Player", PlayerService.currentPlayer);
         })
         .catch(function(err){
@@ -57,7 +55,11 @@
 
       // Deauthenticate
       PlayerService.deAuthenticate = function(){
-        auth.$unauth();
+        PlayerService.currentPlayer.$remove().then(function(){
+          auth.$unauth();
+        }).catch(function(err){
+          Materialize.toast('Error Logging Out ' + err, 4000);
+        });
       };
 
       // Get the list of players
@@ -93,9 +95,11 @@
 
       // Set the current player. Used by watcher to persist player across
       // sessions.
-      var _setPlayer = function(uid){
+      var _setCurrentPlayer = function(uid){
         playerRef = ref.child(uid);
         PlayerService.currentPlayer = $firebaseObject(playerRef);
+        // PlayerService.currentPlayer.status = 'online';
+        // PlayerService.currentPlayer.$save();
       };
 
       // ***********************************************
@@ -108,7 +112,7 @@
 
         // Auth exists, so bind the existing record
         if (authData) {
-          _setPlayer(authData.auth.uid);
+          _setCurrentPlayer(authData.auth.uid);
         }
       });
 

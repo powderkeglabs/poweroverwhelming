@@ -17,7 +17,8 @@
           bnetid: ctrl.playerForm.bnetid,
           race: ctrl.playerForm.race,
           league: 'Rank Unknown',
-          text: "I'm a young nubile protoss and like long walks on the beach."
+          text: "I'm a young nubile protoss and like long walks on the beach.",
+          status: "Online"
         };
 
         PlayerService.authenticate(player);
@@ -43,7 +44,7 @@
         function(){ return PlayerService.auth; },
         function(data){
           ctrl.auth = data;
-          PlayerService.currentPlayer.$bindTo($scope, 'player');
+          // PlayerService.currentPlayer.$bindTo($scope, 'player');
         }
       );
 
@@ -52,7 +53,6 @@
         function(){ return PlayerService.getCurrentPlayer(); },
         function(data){
           ctrl.player = data;
-
         }
       );
 
