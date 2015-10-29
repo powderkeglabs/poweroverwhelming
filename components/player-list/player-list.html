@@ -13,17 +13,17 @@
         <h5>Filter by Class:</h5>
 
         <ul class="tabs z-depth-1">
-           <li class="tab col s3"><a class="active" href="#test1">All</a></li>
-           <li class="tab col s3"><a href="#test2">Protoss</a></li>
-           <li class="tab col s3"><a href="#test3">Terran</a></li>
-           <li class="tab col s3"><a href="#test4">Zerg</a></li>
+           <li class="tab col s3"><a class="active" href="#" ng-click="ctrl.filterPlayers('all')">All</a></li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('protoss')">Protoss</a></li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('terran')">Terran</a></li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('zerg')">Zerg</a></li>
          </ul>
       </div>
     </div>
 
     <div class="row">
-      <div class="col s12 flex">
-        <player-card ng-repeat="player in ctrl.players" player="player.data"></player-card>
+      <div class="col s12">
+        <div class="flex" ui-view></div>
       </div>
     </div>
   </div>

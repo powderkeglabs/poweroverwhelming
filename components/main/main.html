@@ -13,13 +13,7 @@
           <a class="waves-effect waves-light btn amber" ng-show="ctrl.auth" ng-click='ctrl.logout()'>Logout</a> -->
         </div>
         <div class="col s12 m6">
-  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-          <!-- <div ng-if="ctrl.auth">
-            <player-card></player-card>
-          </div> -->
-
           <player-form heading="Find your perfect ARCHON partner!"></player-form>
-
         </div>
       </div>
 
@@ -28,9 +22,7 @@
 </header>
 
 <main>
-
-
-  <div ui-view></div>
+  <player-list></player-list>
 </main>
 
 <footer class="page-footer">

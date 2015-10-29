@@ -28,7 +28,12 @@
           PlayerService.auth = data; // Set auth data for singleton
           var newPlayerRef = ref.child(data.auth.uid);
           var newPlayer = $firebaseObject(newPlayerRef);
-          newPlayer.data = playerData;
+
+          // 'Flatten' the player data into the Firebase ref
+          // Otherwise we'd have to save it as a nested object, and we don't
+          // want that.
+          newPlayer = Object.assign(newPlayer, playerData);
+
           return newPlayer.$save(); //save player data
         })
 
@@ -50,8 +55,18 @@
       };
 
       // Get the list of players
-      PlayerService.getPlayers = function(){
-        return list;
+      PlayerService.getPlayers = function(race){
+
+        var query;    // Used to generate firebase query;
+
+        // Validate the race before querying;
+        if (['zerg', 'protoss', 'terran'].indexOf(race) >= 0) {
+          query = ref.orderByChild('race').equalTo(race).limitToLast(25);
+        } else {
+          query = ref.orderByKey().limitToLast(25);
+        }
+
+        return $firebaseArray(query);
       };
 
 
@@ -73,7 +88,6 @@
         // Auth exists, so bind the existing record
         if (authData) {
           PlayerService.setPlayer(authData.auth.uid);
-          console.log('Current Player', PlayerService.currentPlayer);
         }
       });
 
