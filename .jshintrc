@@ -32,5 +32,5 @@
     "element": true,
     "by": true
   },
-  "predef": ["Firebase"]
+  "predef": ["Firebase", "Materialize"]
 }

@@ -15,16 +15,16 @@
       // @TODO: Test for auth expiry
       PlayerService.authenticate = function(player){
 
-        console.log(player);
-
+        // Login anonymously and save the player data
         if (!PlayerService.auth) {
           auth.$authAnonymously().then(function(data){
             PlayerService.auth = data;
             return data;
           }).then(function(){
-            list.$add(player);
+            list.$add(player);  //save player data
           }).catch(function(err){
             console.log('Error authenticating', err);
+            Materialize.toast('Error Authenticating ' + err, 4000);
           });
         }
       };
