@@ -8,14 +8,21 @@
 
       var ref = new Firebase('https://crackling-inferno-4162.firebaseio.com/players');
       var auth = $firebaseAuth(ref);
+      var list = $firebaseArray(ref);
       var PlayerService = { auth: auth.$getAuth() };
 
       // Login anonymously only if not already logged in
       // @TODO: Test for auth expiry
-      PlayerService.authenticate = function(){
+      PlayerService.authenticate = function(player){
+
+        console.log(player);
+
         if (!PlayerService.auth) {
           auth.$authAnonymously().then(function(data){
             PlayerService.auth = data;
+            return data;
+          }).then(function(){
+            list.$add(player);
           }).catch(function(err){
             console.log('Error authenticating', err);
           });
@@ -29,7 +36,7 @@
 
       // Get the list of players
       PlayerService.getPlayers = function(){
-        return $firebaseArray(ref);
+        return list;
       };
 
       // Watches for changes to auth and maintains state across sessions

@@ -15,7 +15,7 @@
       };
 
       ctrl.login = function(){
-        PlayerService.authenticate();
+        PlayerService.authenticate(ctrl.player);
       };
 
       ctrl.logout = function(){
