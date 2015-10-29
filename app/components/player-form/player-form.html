@@ -23,9 +23,9 @@
           <!-- <label>Race</label> -->
           <select class="browser-default" ng-model="ctrl.playerForm.race">
             <option value="" disabled selected>Select Your Race</option>
-            <option value="Zerg">Zerg</option>
-            <option value="Terran">Terran</option>
-            <option value="Protoss">Protoss</option>
+            <option value="zerg">Zerg</option>
+            <option value="terran">Terran</option>
+            <option value="protoss">Protoss</option>
           </select>
         </div>
       </div>
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<player-card ng-cloak player="ctrl.player.data" self="true" ng-show="ctrl.auth"></player-card>
+<player-card ng-cloak player="ctrl.player" self="true" ng-show="ctrl.auth"></player-card>
 
 <div ng-show="ctrl.auth">
   <a class="btn" ng-click="ctrl.openModal()">Edit Info</a>

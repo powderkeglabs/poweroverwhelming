@@ -4,14 +4,14 @@
 
   angular.module('partnerApp')
 
-    .controller('PlayerListCtrl', ['PlayerService', function(PlayerService){
+    .controller('PlayerListCtrl', ['PlayerService', '$state', function(PlayerService, $state){
 
       var ctrl = this;
       ctrl.players = PlayerService.getPlayers();
-      // PlayerService.getPlayers().then(function(response){
-      //   ctrl.players = response.data;
-      //   console.log(ctrl.players);
-      // });
+      ctrl.filterPlayers = function(race){
+        $state.go('race', { race: race });
+        ctrl.players = PlayerService.getPlayers(race);
+      };
 
       //Materialize tabs initializtion
       $(document).ready(function(){
