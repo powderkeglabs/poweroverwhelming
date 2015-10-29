@@ -12,6 +12,7 @@
       ctrl.login = function(){
         var player = {
           name: ctrl.playerForm.name,
+          bnetid: ctrl.playerForm.bnetid,
           race: ctrl.playerForm.race,
           league: 'Unranked',
           text: "I'm a young nubile protoss and like long walks on the beach."
