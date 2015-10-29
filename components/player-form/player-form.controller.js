@@ -14,7 +14,7 @@
           name: ctrl.playerForm.name,
           bnetid: ctrl.playerForm.bnetid,
           race: ctrl.playerForm.race,
-          league: 'Unranked',
+          league: 'Rank Unknown',
           text: "I'm a young nubile protoss and like long walks on the beach."
         };
 
