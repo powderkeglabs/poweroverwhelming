@@ -11,7 +11,13 @@
       var list = $firebaseArray(ref);
       var playerRef;
 
+      // Initilaize the service
       var PlayerService = { auth: auth.$getAuth() };
+
+
+      // ********************************************************************
+      // PUBLIC Functions
+      // ********************************************************************
 
       // Login anonymously only if not already logged in
       // @TODO: Test for auth expiry
@@ -60,6 +66,7 @@
         var query;    // Used to generate firebase query;
 
         // Validate the race before querying;
+        // @TODO: Race array should be a constant or something...
         if (['zerg', 'protoss', 'terran'].indexOf(race) >= 0) {
           query = ref.orderByChild('race').equalTo(race).limitToLast(25);
         } else {
@@ -69,17 +76,31 @@
         return $firebaseArray(query);
       };
 
-
       // Get the current player data
       PlayerService.getCurrentPlayer = function(){
         return PlayerService.currentPlayer;
       };
 
-      PlayerService.setPlayer = function(uid){
+      // Update the player's info and persist to Firebase
+      PlayerService.updatePlayerInfo = function(player){
+        console.log("Update Player Info", player);
+      };
+
+
+      // ***************************************************
+      // Private Functions
+      // ***************************************************
+
+      // Set the current player. Used by watcher to persist player across
+      // sessions.
+      var _setPlayer = function(uid){
         playerRef = ref.child(uid);
         PlayerService.currentPlayer = $firebaseObject(playerRef);
       };
 
+      // ***********************************************
+      // WATCHERS
+      // ***********************************************
       // Watches for changes to auth and maintains state across sessions
       auth.$onAuth(function(authData){
         PlayerService.auth = authData;
@@ -87,7 +108,7 @@
 
         // Auth exists, so bind the existing record
         if (authData) {
-          PlayerService.setPlayer(authData.auth.uid);
+          _setPlayer(authData.auth.uid);
         }
       });
 

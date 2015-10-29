@@ -8,7 +8,9 @@
       var ctrl = this;
       ctrl.auth = {}; // Holds the auth state
       ctrl.player = {}; // Holds the player state
+      ctrl.updateForm = {}; //Holds the updated player state
 
+      // Login the user
       ctrl.login = function(){
         var player = {
           name: ctrl.playerForm.name,
@@ -25,11 +27,16 @@
         PlayerService.deAuthenticate();
       };
 
+      // Open the bottom sheet modal to allow user to edit their info
       ctrl.openModal = function(){
-        console.log("openModal");
         $('#modalEdit').openModal();
       };
 
+      // Update the player's info
+      // ctrl.updatePlayerInfo = function(){
+      //   console.log("CLICL");
+      //   PlayerService.updatePlayerInfo(ctrl.player);
+      // };
 
       // Watch for changes in the Auth State
       $scope.$watch(
@@ -47,10 +54,12 @@
         }
       );
 
+      PlayerService.currentPlayer.$bindTo($scope, 'player');
+
       // For Materialize to enable modal triggers
       $(document).ready(function(){
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        // $('.modal-trigger').leanModal();
+        // Modal cannot be dismissed by clicking outside of the modal
+        // $('.modal-trigger').leanModal({ dismissible: false});
         $('select').material_select();
       });
 
