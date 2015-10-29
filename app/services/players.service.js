@@ -98,8 +98,6 @@
       var _setCurrentPlayer = function(uid){
         playerRef = ref.child(uid);
         PlayerService.currentPlayer = $firebaseObject(playerRef);
-        // PlayerService.currentPlayer.status = 'online';
-        // PlayerService.currentPlayer.$save();
       };
 
       // ***********************************************
