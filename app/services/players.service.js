@@ -4,7 +4,7 @@
 
   angular.module('partnerApp')
 
-    .service('PlayerService', ['FIREBASE_URL', '$firebaseAuth', '$firebaseObject', '$firebaseArray', function(FIREBASE_URL, $firebaseAuth, $firebaseObject, $firebaseArray){
+    .service('PlayerService', ['FIREBASE_URL', 'PresenceService', '$firebaseAuth', '$firebaseObject', '$firebaseArray', function(FIREBASE_URL, PresenceService, $firebaseAuth, $firebaseObject, $firebaseArray){
 
       var ref = new Firebase(FIREBASE_URL + '/players');
       var auth = $firebaseAuth(ref);
@@ -110,9 +110,12 @@
         PlayerService.auth = authData;
         console.log('Auth Changed', PlayerService.auth);
 
-        // Auth exists, so bind the existing record
+        // Auth exists, so bind the existing record and set online
         if (authData) {
           _setCurrentPlayer(authData.auth.uid);
+          PresenceService.setOnline(authData.auth.uid);
+        } else {
+          PresenceService.setOffline();
         }
       });
 
