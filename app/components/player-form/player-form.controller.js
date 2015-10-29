@@ -7,15 +7,17 @@
 
       var ctrl = this;
       ctrl.auth = {}; // Holds the auth state
-      ctrl.player = {
-        name: 'Test#124',
-        league: 'Unranked',
-        race: 'Protoss',
-        text: "I'm a young nubile protoss and like long walks on the beach."
-      };
+      ctrl.player = {}; // Holds the player state
 
       ctrl.login = function(){
-        PlayerService.authenticate(ctrl.player);
+        var player = {
+          name: ctrl.playerForm.name,
+          race: ctrl.playerForm.race,
+          league: 'Unranked',
+          text: "I'm a young nubile protoss and like long walks on the beach."
+        };
+
+        PlayerService.authenticate(player);
       };
 
       ctrl.logout = function(){
@@ -33,6 +35,14 @@
         function(){ return PlayerService.auth; },
         function(data){
           ctrl.auth = data;
+        }
+      );
+
+      // Watch for changes in the Player Data
+      $scope.$watch(
+        function(){ return PlayerService.getCurrentPlayer(); },
+        function(data){
+          ctrl.player = data;
         }
       );
 

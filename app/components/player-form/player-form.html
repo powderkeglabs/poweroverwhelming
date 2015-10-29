@@ -6,32 +6,35 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="name" type="text" placeholder="MojoJJ#124">
-        <label class="active" for="name">Hi, my Battle.net ID is ...</label>
+    <form name="playerForm" ng-submit="ctrl.login()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" placeholder="MojoJJ#124" ng-model="ctrl.playerForm.name">
+          <label class="active" for="name">Hi, my Battle.net ID is ...</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <label>I play as a ...</label>
-        <select class="browser-default">
-          <option value="" disabled selected>Select Race</option>
-          <option value="1">Zerg</option>
-          <option value="2">Terran</option>
-          <option value="3">Protoss</option>
-        </select>
+      <div class="row">
+        <div class="col s12">
+          <label>I play as a ...</label>
+          <select class="browser-default" ng-model="ctrl.playerForm.race">
+            <option value="" disabled selected>Select Race</option>
+            <option value="Zerg">Zerg</option>
+            <option value="Terran">Terran</option>
+            <option value="Protoss">Protoss</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s12 center-align">
-        <a class="waves-effect waves-light btn amber" ng-click="ctrl.login()">Let's Play!</a>
+      <div class="row">
+        <div class="col s12 center-align">
+          <input type="submit" class="waves-effect waves-light btn amber" value="Let's Play!">
+        </div>
       </div>
-    </div>
+    </form>
+
   </div>
 </div>
 
-<player-card player="ctrl.player" self="true" ng-show="ctrl.auth"></player-card>
+<player-card ng-cloak player="ctrl.player.data" self="true" ng-show="ctrl.auth"></player-card>
 
 <div ng-show="ctrl.auth">
   <a class="btn" ng-click="ctrl.openModal()">Edit Info</a>
