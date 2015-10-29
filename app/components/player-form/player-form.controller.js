@@ -43,6 +43,7 @@
         function(){ return PlayerService.auth; },
         function(data){
           ctrl.auth = data;
+          PlayerService.currentPlayer.$bindTo($scope, 'player');
         }
       );
 
@@ -51,10 +52,11 @@
         function(){ return PlayerService.getCurrentPlayer(); },
         function(data){
           ctrl.player = data;
+
         }
       );
 
-      PlayerService.currentPlayer.$bindTo($scope, 'player');
+
 
       // For Materialize to enable modal triggers
       $(document).ready(function(){
