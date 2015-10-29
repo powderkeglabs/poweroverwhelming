@@ -4,6 +4,7 @@ header {
   background-image: url('../images/cover.png');
   background-position: center;
   background-size: cover;
+  //background-color: $primary-color;
 }
 
 header .container,
@@ -13,6 +14,7 @@ header .row
 }
 
 header .heading {
-  font-weight: 400;
-  color: $text-color-secondary;
+  font-weight: 600;
+  color: $text-color-primary;
+  font-size: 18px;
 }

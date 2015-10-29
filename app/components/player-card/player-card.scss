@@ -2,9 +2,16 @@ player-card {
   flex: 0 1 31%;
 }
 
+
 .player-card.card {
   height: 250px;
 }
+
+.player-card .card-title {
+  color: $text-color-primary;
+  font-weight: 600;
+}
+
 
 .player-card a.profile-url{
   color: $text-color-primary;
@@ -57,4 +64,12 @@ player-card {
 
 .player-card p.text {
   color: color('grey', 'darken-3');
+}
+
+.player-card .card-action a {
+  color: color("grey", "darken-1");
+}
+
+.player-card.self {
+  height: auto;
 }

@@ -8,9 +8,11 @@
       return {
         scope: {},
         bindToController: {
-          player: '='
+          player: '=',
+          self: "@"
         },
-        controller: function() {},
+        controller: function() {
+        },
         controllerAs: 'ctrl',
         templateUrl: 'components/player-card/player-card.html'
       };

@@ -15,6 +15,9 @@ $tabs-bg-color: $primary-color;
 
 $link-color: darken($accent-color, 10%);
 
+// $input-bg-color: color('grey','darken-1');
+$dropdown-color: $text-color-primary;
+
 a {
   color: $accent-color;
 }

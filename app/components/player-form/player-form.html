@@ -1,47 +1,57 @@
-<form class="col s12">
-  <div class="card">
-    <div class="card-content">
 
-      <div class="row">  
-          <div class="input-field col s4">
-          <select>
-            <option value="" disabled selected> League</option>
-            <option value="bronze">Bronze</option>
-            <option value="silver">Silver</option>
-            <option value="gold">Gold</option>
-            <option value="platinum">Platinum</option>
-            <option value="diamond">Diamond</option>
-            <option value="master">Master</option>
-            <option value="grandmaster">Grandmaster</option>
-          </select>
-           </div>
-          <div class="input-field col s4">
-          <select>
-            <option value="" disabled selected>Region</option>
-            <option value="na">North America</option>
-            <option value="eu">Europe</option>
-            <option value="kr">Korea</option>
-            <option value="sea">South-East Asia</option>
-          </select>
-          </div>
-          <div class="input-field col s4">
-          <input id="profileUrl" type="url" class="validate">
-          <label class="inactive" for="profileUrl">Profile URL</label>
-          </div>
+<div class="card grey lighten-3" ng-hide="ctrl.auth">
+  <div class="card-content black-text">
+    <div class="row">
+      <div class="col s12">
+        <span class="heading">Your Player Info</span>
       </div>
+    </div>
 
+    <form name="playerForm" ng-submit="ctrl.login()">
       <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Tell us what you're looking for</label>
+        <div class="input-field col s6">
+          <input id="name" type="text" placeholder="MojoJJ" ng-model="ctrl.playerForm.name">
+          <label class="active" for="name">BNet Username</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="bnetid" type="number" placeholder="153" ng-model="ctrl.playerForm.bnetid">
+          <label class="active" for="bnetid">BNet ID #</label>
         </div>
       </div>
-
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
-
-    </div>
+      <div class="row">
+        <div class="col s12">
+          <!-- <label>Race</label> -->
+          <select class="browser-default" ng-model="ctrl.playerForm.race">
+            <option value="" disabled selected>Select Your Race</option>
+            <option value="Zerg">Zerg</option>
+            <option value="Terran">Terran</option>
+            <option value="Protoss">Protoss</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 center-align">
+          <input type="submit" class="waves-effect waves-light btn amber" value="Let's Play!">
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 
-</form>
+<player-card ng-cloak player="ctrl.player.data" self="true" ng-show="ctrl.auth"></player-card>
+
+<div ng-show="ctrl.auth">
+  <a class="btn" ng-click="ctrl.openModal()">Edit Info</a>
+  <a class="btn" ng-click="ctrl.logout()">Logout</a>
+</div>
+
+<!-- Modal Structure -->
+<div id="modalEdit" class="modal bottom-sheet">
+  <div class="modal-content black-text">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>

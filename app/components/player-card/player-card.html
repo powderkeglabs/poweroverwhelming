@@ -1,5 +1,6 @@
-<div class="card player-card" ng-class="ctrl.player.race">
+<div class="card player-card {{ctrl.player.race}}" ng-class="{ 'self' : ctrl.self === 'true' }">
   <div class="card-content">
+    <span class="card-title" ng-if="ctrl.self === 'true'">You Are Logged In As</span>
     <div class="status">
       <span class="title" title="click to view battle.net profile">
         <a class="profile-url" ng-href="{{ctrl.player.url}}">{{ctrl.player.name}}#{{ctrl.player.bnetid}}</a>
