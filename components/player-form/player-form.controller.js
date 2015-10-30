@@ -22,7 +22,7 @@
           bnetid: ctrl.playerForm.bnetid,
           race: ctrl.playerForm.race,
           league: 'Rank Unknown',
-          text: "I'm a fun and honest " + ctrl.playerForm.race + " looking for another kind " + ctrl.playerForm.race + " to make sweet Archon Mode magic with."
+          text: "I'm a fun and honest " + ctrl.playerForm.race + " looking for another funny, kind, and honest " + ctrl.playerForm.race + " to make sweet Archon Mode magic with."
         };
 
         PlayerService.authenticate(player);
@@ -75,6 +75,7 @@
       // For Materialize to enable modal triggers
       $(document).ready(function(){
         $('select').material_select();
+        $('textarea#text').characterCounter();
       });
 
 

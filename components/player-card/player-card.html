@@ -3,11 +3,18 @@
     <!-- <span class="card-title" ng-if="ctrl.self === 'true'">You Are Logged In As</span> -->
     <div class="status">
       <span class="title" title="click to view battle.net profile">
-        <a class="profile-url" ng-href="{{ctrl.player.url}}">{{ctrl.player.name}}#{{ctrl.player.bnetid}}</a>
+        <a class="profile-url" ng-href="{{ctrl.player.url}}">
+          <span ng-bind="ctrl.player.name"></span>
+          #
+          <span ng-bind="ctrl.player.bnetid"></span>
+        </a>
       </span>
       <span class="online" title="This player is online"><i class="material-icons">power_settings_new</i></span>
     </div>
-    <span class="league">{{ctrl.player.league}}</span>
-    <p class="text">{{ctrl.player.text}}</p>
+    <span class="player-badges">
+      <span class="race" ng-bind="ctrl.player.race"></span> - 
+      <span class="league" ng-bind="ctrl.player.league"></span>
+    </span>
+    <p class="text" ng-bind="ctrl.player.text"></p>
   </div>
 </div>
