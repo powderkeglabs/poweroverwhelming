@@ -3,3 +3,12 @@
 // player-form .card.start-panel {
 //   background-color: color('grey', 'lighten-3');
 // }
+
+.modal.bottom-sheet{
+  max-height: 55%;
+}
+
+player-form .select-label.active {
+  position: absolute;
+  top: 0px;
+}

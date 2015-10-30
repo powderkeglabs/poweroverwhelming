@@ -62,19 +62,21 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s6">
-          <!-- <label>Race</label> -->
+        <div class="input-field col s6">
+          <label class="active select-label">Your Race</label>
           <select class="browser-default" ng-model="ctrl.updateForm.race" required>
             <option value="" disabled selected>Select Your Race</option>
             <option value="zerg">Zerg</option>
             <option value="terran">Terran</option>
             <option value="protoss">Protoss</option>
           </select>
+
         </div>
-        <div class="col s6">
-          <!-- <label>League</label> -->
+        <div class="input-field col s6">
+          <label class="active select-label">Your Highest Rank</label>
           <select class="browser-default" ng-model="ctrl.updateForm.league" required>
             <option value="" disabled selected>Select Your League</option>
+            <option value="Rank Unknown">Rank Unknown</option>
             <option value="Bronze">Bronze</option>
             <option value="Silver">Silver</option>
             <option value="Gold">Gold</option>
@@ -85,9 +87,11 @@
           </select>
         </div>
       </div>
-      <div class="input-field col s6">
-        <input id="text" type="text" ng-model="ctrl.updateForm.text">
-        <label class="active" for="text">Something about yourself</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="text" class="materialize-textarea" ng-model="ctrl.updateForm.text" length="120" maxlength="120"></textarea>
+          <label class="active" for="text">Tell us something about yourself</label>
+        </div>
       </div>
       <div class="modal-footer grey lighten-3">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
