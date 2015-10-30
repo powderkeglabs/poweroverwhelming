@@ -83,7 +83,6 @@
       // ------------------------------------------------
       // Update the player's info and persist to Firebase
       PlayerService.updatePlayer = function(newData){
-        console.log("Update Player Info", newData);
         newData.timestamp = Firebase.ServerValue.TIMESTAMP;
         PlayerService.currentPlayer.$ref().update(newData, function(err){
           if (err) {
@@ -91,6 +90,7 @@
             return Materialize.toast('Error Updating Data ' + err, 4000);
           }
           _setCurrentPlayer(PlayerService.currentPlayer.$ref().key());
+          Materialize.toast('Your info has been updated', 4000);
         });
       };
 
