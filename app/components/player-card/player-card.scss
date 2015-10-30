@@ -10,10 +10,13 @@ player-card {
   }
 }
 
-
-.player-card.card {
-  height: 250px;
+// On mobile devices, card heights can be dynamic
+@media(min-width: 768px){
+  .player-card.card {
+    height: 220px;
+  }
 }
+
 
 .player-card .card-title {
   color: $text-color-primary;
@@ -64,14 +67,25 @@ player-card {
   color: color('green', 'accent-4');
 }
 
-.player-card span.league {
+.player-card .player-badges {
   display: block;
-  color: $text-color-primary;
+  color: lighten($text-color-primary, 10%);
   font-weight: 600;
 }
 
+.player-card .player-badges .race,
+.player-card .player-badges .league {
+  // display: block;
+  // color: $text-color-primary;
+  // font-weight: 600;
+  text-transform: capitalize;
+  // margin-right: 2px;
+}
+
 .player-card p.text {
-  color: color('grey', 'darken-3');
+  margin-top: 5px;
+  color: lighten($text-color-primary, 15%);
+  font-size: 14px;
 }
 
 .player-card .card-action a {
