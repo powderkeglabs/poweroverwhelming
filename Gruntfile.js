@@ -342,7 +342,8 @@ module.exports = function (grunt) {
               'components/**/*.{html,js}',
               'services/**/*.js',
               'app.js',
-              'players.json'
+              'players.json',
+              'CNAME'
             ]
           },
           // Copy Materialize fonts from temp dir to dist
