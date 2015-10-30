@@ -33,6 +33,7 @@
 
           // 'Flatten' the data instead of nesting object
           newPlayer = Object.assign(newPlayer, playerData);
+          newPlayer.timestamp = Firebase.ServerValue.TIMESTAMP;
           return newPlayer.$save();
         }).then(function(savedRef){
           // Find the saved record and bind that to .currentPlayer
