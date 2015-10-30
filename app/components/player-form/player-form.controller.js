@@ -56,8 +56,6 @@
         }
       );
 
-
-
       // For Materialize to enable modal triggers
       $(document).ready(function(){
         // Modal cannot be dismissed by clicking outside of the modal
