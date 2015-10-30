@@ -15,13 +15,15 @@ module.exports = function (grunt) {
 
   // Automatically load required grunt tasks
   require('jit-grunt')(grunt, {
-    useminPrepare: 'grunt-usemin'
+    useminPrepare: 'grunt-usemin',
+    ngconstant: 'grunt-ng-constant'
   });
 
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    name: 'partnerApp'
   };
 
   // Define the configuration for all the tasks
@@ -365,7 +367,8 @@ module.exports = function (grunt) {
       server: [
         'babel:dist',
         'copy:fonts',
-        'sass'
+        'sass',
+        'ngconstant:dev'
       ],
       test: [
         'babel'
@@ -374,9 +377,36 @@ module.exports = function (grunt) {
         'copy:fonts',
         'babel',
         'sass',
+        'ngconstant:dist',
         'imagemin',
         'svgmin'
       ]
+    },
+
+    // Create dynamic constant file for setting Firebase URLs
+    ngconstant: {
+      options: {
+        name: '<%= config.name %>',
+        wrap: "(function(){'use strict';\n\n{%= __ngModule %}})();",
+        deps: false,
+        space: '  '
+      },
+      dev: {
+        options: {
+          dest: '<%= config.app %>/config.js',
+        },
+        constants: {
+          FIREBASE_URL: 'https://po-dev-instance.firebaseio.com/'
+        }
+      },
+      dist: {
+        options: {
+          dest: '<%= config.dist %>/config.js'
+        },
+        constants: {
+          FIREBASE_URL: 'https://po-prod.firebaseio.com/'
+        }
+      }
     }
   });
 
