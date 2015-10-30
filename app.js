@@ -4,7 +4,8 @@
 
   angular.module('partnerApp', ['ui.router', 'firebase'])
 
-  .constant("FIREBASE_URL", "https://po-dev-instance.firebaseio.com/");
+  .constant("FIREBASE_URL", "https://crackling-inferno-4162.firebaseio.com/")
+  .constant("RACES", ['protoss', 'zerg', 'terran']);
   // .config(function($stateProvider, $urlRouterProvider){
 
     // $urlRouterProvider.otherwise('/');

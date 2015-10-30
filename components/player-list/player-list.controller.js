@@ -7,10 +7,10 @@
     .controller('PlayerListCtrl', ['PlayerService', '$state', function(PlayerService, $state){
 
       var ctrl = this;
-      ctrl.players = PlayerService.getPlayers();
+      ctrl.players = PlayerService.getPlayers(null, 'online');
       ctrl.filterPlayers = function(race){
         $state.go('race', { race: race });
-        ctrl.players = PlayerService.getPlayers(race);
+        ctrl.players = PlayerService.getPlayers(race, 'online');
       };
 
       //Materialize tabs initializtion
