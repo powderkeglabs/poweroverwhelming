@@ -50,8 +50,6 @@
 <div id="modalEdit" class="modal bottom-sheet grey lighten-3">
   <div class="modal-content black-text">
     <h4>Update Your Info</h4>
-    <p>A bunch of text</p>
-
     <form name="updateForm" class="black-text" ng-submit="ctrl.updatePlayerInfo(updateForm.$valid)" novalidate>
       <div class="row">
         <div class="input-field col s6">
@@ -64,7 +62,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s12">
+        <div class="col s6">
           <!-- <label>Race</label> -->
           <select class="browser-default" ng-model="ctrl.updateForm.race" required>
             <option value="" disabled selected>Select Your Race</option>
@@ -73,6 +71,23 @@
             <option value="protoss">Protoss</option>
           </select>
         </div>
+        <div class="col s6">
+          <!-- <label>League</label> -->
+          <select class="browser-default" ng-model="ctrl.updateForm.league" required>
+            <option value="" disabled selected>Select Your League</option>
+            <option value="Bronze">Bronze</option>
+            <option value="Silver">Silver</option>
+            <option value="Gold">Gold</option>
+            <option value="Platinum">Platinum</option>
+            <option value="Diamond">Diamond</option>
+            <option value="Master">Master</option>
+            <option value="Grandmaster">Grandmaster</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-field col s6">
+        <input id="text" type="text" ng-model="ctrl.updateForm.text">
+        <label class="active" for="text">Something about yourself</label>
       </div>
       <div class="modal-footer grey lighten-3">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
