@@ -1,10 +1,16 @@
 header {
-  height: 400px;
+  // height: 400px;
   width: 100%;
   background-image: url('../images/cover.png');
   background-position: center;
   background-size: cover;
   //background-color: $primary-color;
+}
+
+@media(min-width: 768px){
+  header {
+    height: 400px;
+  }
 }
 
 header .container,
@@ -13,8 +19,15 @@ header .row
   height: 100%;
 }
 
-header .heading {
+header h3.heading {
   font-weight: 600;
   color: $text-color-primary;
-  font-size: 18px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px #212121;
+  // font-size: 20px;
+  margin-top: 40px;
+}
+
+header p.lead-in-text{
+  text-shadow: 1px 1px #212121;
 }
