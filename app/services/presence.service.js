@@ -12,7 +12,6 @@
 
       // Set status to online
       PresenceService.setOnline = function(uid, data) {
-        console.log("save data", data);
         onlineRef.on('value', function(snapshot) {
           if (snapshot.val()) {
             var userRef = presenceRef.child(uid);

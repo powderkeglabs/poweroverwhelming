@@ -3,7 +3,6 @@
   'use strict';
 
   angular.module('partnerApp')
-
     .service('PlayerService', ['FIREBASE_URL', 'RACES', 'PresenceService', '$firebaseAuth', '$firebaseObject', '$firebaseArray', function(FIREBASE_URL, RACES, PresenceService, $firebaseAuth, $firebaseObject, $firebaseArray){
 
       var playersRef = new Firebase(FIREBASE_URL + '/players');
@@ -17,7 +16,7 @@
       // PUBLIC Functions
       // ***********************************************************************
 
-      // ******************************************************
+      // ------------------------------------------------
       // Login anonymously only if not already logged in
       PlayerService.authenticate = function(playerData){
 
@@ -46,7 +45,7 @@
       };
 
 
-      // ******************************************************
+      // ------------------------------------------------
       // Logout and remove the association
       PlayerService.deAuthenticate = function(){
         var updateObj = {status: 'logged_out', timestamp: Firebase.ServerValue.TIMESTAMP};
@@ -83,8 +82,16 @@
 
       // ------------------------------------------------
       // Update the player's info and persist to Firebase
-      PlayerService.updatePlayerInfo = function(player){
-        console.log("Update Player Info", player);
+      PlayerService.updatePlayer = function(newData){
+        console.log("Update Player Info", newData);
+        newData.timestamp = Firebase.ServerValue.TIMESTAMP;
+        PlayerService.currentPlayer.$ref().update(newData, function(err){
+          if (err) {
+            console.error('Error updating info', err);
+            return Materialize.toast('Error Updating Data ' + err, 4000);
+          }
+          _setCurrentPlayer(PlayerService.currentPlayer.$ref().key());
+        });
       };
 
 
@@ -112,18 +119,18 @@
       // Watches for changes to auth and maintains state across sessions
       auth.$onAuth(function(authData){
         PlayerService.auth = authData;
-        console.log('Auth Changed', PlayerService.auth);
 
         // Session exists, or it doesn't. If not then it might've been expired.
         if (authData) {
           _setCurrentPlayer(authData.auth.uid);
         } else {
-
+          // Otherwise it's a logout.  Make sure ruser is offline
           PresenceService.setOffline();
         }
       });
 
+
+      // Return the Service
       return PlayerService;
     }]);
-
 })();

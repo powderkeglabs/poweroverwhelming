@@ -32,18 +32,16 @@
         $('#modalEdit').openModal();
       };
 
-      // Update the player's info
-      // ctrl.updatePlayerInfo = function(){
-      //   console.log("CLICL");
-      //   PlayerService.updatePlayerInfo(ctrl.player);
-      // };
+      ctrl.updatePlayerInfo = function(){
+        PlayerService.updatePlayer(ctrl.updateForm);
+        $('#modalEdit').closeModal();
+      };
 
       // Watch for changes in the Auth State
       $scope.$watch(
         function(){ return PlayerService.auth; },
         function(data){
           ctrl.auth = data;
-          // PlayerService.currentPlayer.$bindTo($scope, 'player');
         }
       );
 
@@ -51,16 +49,22 @@
       $scope.$watch(
         function(){ return PlayerService.getCurrentPlayer(); },
         function(data){
-          ctrl.player = data;
+
+          // Bind one way so UX to update is less jarring if too many people
+          // are updating.
+          if (data && Object.keys(data).length > 0){
+            data.$ref().once('value', function(snapshot){
+              console.log("watch", snapshot.val());
+              ctrl.player = snapshot.val();
+              ctrl.updateForm = snapshot.val();
+            });
+          }
+
         }
       );
 
-
-
       // For Materialize to enable modal triggers
       $(document).ready(function(){
-        // Modal cannot be dismissed by clicking outside of the modal
-        // $('.modal-trigger').leanModal({ dismissible: false});
         $('select').material_select();
       });
 
