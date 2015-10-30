@@ -6,17 +6,23 @@
 
     .service('PresenceService', ['FIREBASE_URL', function(FIREBASE_URL){
 
-      // var presenceRef = new Firebase(FIREBASE_URL + '/presence');
       var onlineRef = new Firebase(FIREBASE_URL + '/.info/connected');
       var PresenceService = {};
 
       // Set status to online
-      PresenceService.setOnline = function(uid) {
+      PresenceService.setOnline = function(uid, data) {
+        console.log("save data", data);
         onlineRef.on('value', function(snapshot) {
           if (snapshot.val()) {
             PresenceService.userRef = new Firebase(FIREBASE_URL + '/presence/' + uid);
             PresenceService.userRef.onDisconnect().remove();
-            PresenceService.userRef.set('online');
+
+            if (data){
+              PresenceService.userRef.set(data);
+            } else {
+              PresenceService.userRef.set('online');
+            }
+
           }
         });
       };

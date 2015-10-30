@@ -8,7 +8,6 @@
 
       var ref = new Firebase(FIREBASE_URL + '/players');
       var auth = $firebaseAuth(ref);
-      var playerRef;
 
       // Initilaize the service
       var PlayerService = { auth: auth.$getAuth() };
@@ -21,6 +20,8 @@
       // Login anonymously only if not already logged in
       // @TODO: Test for auth expiry
       PlayerService.authenticate = function(playerData){
+
+        playerData.timestamp = Firebase.ServerValue.TIMESTAMP;
 
         // Check if user is already authenticated
         if (PlayerService.auth) {
@@ -37,13 +38,16 @@
           // Otherwise we'd have to save it as a nested object, and we don't
           // want that.
           newPlayer = Object.assign(newPlayer, playerData);
+          console.log("newplayer", playerData, newPlayer);
+
+          newPlayerRef.onDisconnect().update({ status: 'disconnected', timestamp: Firebase.ServerValue.TIMESTAMP});
 
           return newPlayer.$save(); //save player data
         })
 
         // Get that saved record and bind it to `currentPlayer`
         .then(function(ref){
-          _setCurrentPlayer(ref.key());
+          _setCurrentPlayer(ref.key(), playerData, 'online');
           console.log("Current Player", PlayerService.currentPlayer);
         })
         .catch(function(err){
@@ -55,7 +59,9 @@
 
       // Deauthenticate
       PlayerService.deAuthenticate = function(){
-        PlayerService.currentPlayer.$remove().then(function(){
+        PlayerService.currentPlayer.status = "logged out";
+        PlayerService.currentPlayer.timestamp = Firebase.ServerValue.TIMESTAMP;
+        PlayerService.currentPlayer.$save().then(function(){
           auth.$unauth();
         }).catch(function(err){
           Materialize.toast('Error Logging Out ' + err, 4000);
@@ -95,9 +101,11 @@
 
       // Set the current player. Used by watcher to persist player across
       // sessions.
-      var _setCurrentPlayer = function(uid){
-        playerRef = ref.child(uid);
+      var _setCurrentPlayer = function(uid, data, status){
+        var playerRef = ref.child(uid);
         PlayerService.currentPlayer = $firebaseObject(playerRef);
+        playerRef.update({ status: status, timestamp: Firebase.ServerValue.TIMESTAMP});
+        PresenceService.setOnline(uid, data);
       };
 
       // ***********************************************
@@ -110,8 +118,7 @@
 
         // Auth exists, so bind the existing record and set online
         if (authData) {
-          _setCurrentPlayer(authData.auth.uid);
-          PresenceService.setOnline(authData.auth.uid);
+          _setCurrentPlayer(authData.auth.uid, null, 'online');
         } else {
           PresenceService.setOffline();
         }

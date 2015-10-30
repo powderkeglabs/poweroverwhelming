@@ -17,8 +17,7 @@
           bnetid: ctrl.playerForm.bnetid,
           race: ctrl.playerForm.race,
           league: 'Rank Unknown',
-          text: "I'm a young nubile protoss and like long walks on the beach.",
-          status: "Online"
+          text: "I'm a young nubile protoss and like long walks on the beach."
         };
 
         PlayerService.authenticate(player);
