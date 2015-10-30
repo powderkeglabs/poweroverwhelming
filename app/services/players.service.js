@@ -21,8 +21,6 @@
       // @TODO: Test for auth expiry
       PlayerService.authenticate = function(playerData){
 
-        playerData.timestamp = Firebase.ServerValue.TIMESTAMP;
-
         // Check if user is already authenticated
         if (PlayerService.auth) {
           return console.error("User already logged in");
@@ -34,39 +32,35 @@
           var newPlayerRef = ref.child(data.auth.uid);
           var newPlayer = $firebaseObject(newPlayerRef);
 
-          // 'Flatten' the player data into the Firebase ref
-          // Otherwise we'd have to save it as a nested object, and we don't
-          // want that.
+          // 'Flatten' the data instead of nesting object
           newPlayer = Object.assign(newPlayer, playerData);
-          console.log("newplayer", playerData, newPlayer);
-
-          newPlayerRef.onDisconnect().update({ status: 'disconnected', timestamp: Firebase.ServerValue.TIMESTAMP});
-
-          return newPlayer.$save(); //save player data
-        })
-
-        // Get that saved record and bind it to `currentPlayer`
-        .then(function(ref){
-          _setCurrentPlayer(ref.key(), playerData, 'online');
-          console.log("Current Player", PlayerService.currentPlayer);
-        })
-        .catch(function(err){
-          console.log('Error authenticating', err);
+          return newPlayer.$save();
+        }).then(function(savedRef){
+          // Find the saved record and bind that to .currentPlayer
+          var playerRef = ref.child(savedRef.key());
+          PlayerService.currentPlayer = $firebaseObject(playerRef);
+        }).catch(function(err){
+          console.error('Error authenticating', err);
           Materialize.toast('Error Authenticating ' + err, 4000);
         });
-
       };
 
-      // Deauthenticate
+
+
+      // Logout and remove the association
       PlayerService.deAuthenticate = function(){
-        PlayerService.currentPlayer.status = "logged out";
-        PlayerService.currentPlayer.timestamp = Firebase.ServerValue.TIMESTAMP;
-        PlayerService.currentPlayer.$save().then(function(){
+        var updateObj = {status: 'logged_out', timestamp: Firebase.ServerValue.TIMESTAMP};
+        PlayerService.currentPlayer.$ref().update(updateObj, function(err){
+          if (err){
+            console.error('Error Logging Out', err);
+            return Materialize.toast('Error Logging Out ' + err, 4000);
+          }
           auth.$unauth();
-        }).catch(function(err){
-          Materialize.toast('Error Logging Out ' + err, 4000);
+          PlayerService.currentPlayer = {}; // unset currentPlayer
         });
       };
+
+
 
       // Get the list of players
       PlayerService.getPlayers = function(race){
@@ -95,31 +89,38 @@
       };
 
 
+
       // ***************************************************
       // Private Functions
       // ***************************************************
 
-      // Set the current player. Used by watcher to persist player across
-      // sessions.
-      var _setCurrentPlayer = function(uid, data, status){
+      // Set the current player.
+      // Finds and reloads the userdata if there's an existing session.
+      var _setCurrentPlayer = function(uid){
         var playerRef = ref.child(uid);
         PlayerService.currentPlayer = $firebaseObject(playerRef);
-        playerRef.update({ status: status, timestamp: Firebase.ServerValue.TIMESTAMP});
-        PresenceService.setOnline(uid, data);
+        playerRef.once("value", function(snapshot){
+          var data = snapshot.val();
+          PresenceService.setOnline(uid, data);
+        });
       };
+
+      // Reload the
 
       // ***********************************************
       // WATCHERS
       // ***********************************************
+
       // Watches for changes to auth and maintains state across sessions
       auth.$onAuth(function(authData){
         PlayerService.auth = authData;
         console.log('Auth Changed', PlayerService.auth);
 
-        // Auth exists, so bind the existing record and set online
+        // Session exists, or it doesn't. If not then it might've been expired.
         if (authData) {
-          _setCurrentPlayer(authData.auth.uid, null, 'online');
+          _setCurrentPlayer(authData.auth.uid);
         } else {
+
           PresenceService.setOffline();
         }
       });

@@ -14,10 +14,13 @@
         console.log("save data", data);
         onlineRef.on('value', function(snapshot) {
           if (snapshot.val()) {
-            PresenceService.userRef = new Firebase(FIREBASE_URL + '/presence/' + uid);
+            PresenceService.userRef = new Firebase(FIREBASE_URL + '/online/' + uid);
+
+            // Set firebase to Watch for client disconnect and set to offline;
             PresenceService.userRef.onDisconnect().remove();
 
             if (data){
+              data.timestamp = Firebase.ServerValue.TIMESTAMP;
               PresenceService.userRef.set(data);
             } else {
               PresenceService.userRef.set('online');
