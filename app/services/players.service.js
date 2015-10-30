@@ -17,8 +17,8 @@
       // PUBLIC Functions
       // ********************************************************************
 
+      // ******************************************************
       // Login anonymously only if not already logged in
-      // @TODO: Test for auth expiry
       PlayerService.authenticate = function(playerData){
 
         // Check if user is already authenticated
@@ -46,7 +46,7 @@
       };
 
 
-
+      // ******************************************************
       // Logout and remove the association
       PlayerService.deAuthenticate = function(){
         var updateObj = {status: 'logged_out', timestamp: Firebase.ServerValue.TIMESTAMP};
@@ -61,7 +61,13 @@
       };
 
 
+      // PlayerService.getOnlinePlayers = function(){
+      //   var query =
+      // };
 
+
+
+      // ******************************************************
       // Get the list of players
       PlayerService.getPlayers = function(race){
 
@@ -78,11 +84,15 @@
         return $firebaseArray(query);
       };
 
+
+
+      // ******************************************************
       // Get the current player data
       PlayerService.getCurrentPlayer = function(){
         return PlayerService.currentPlayer;
       };
 
+      // ******************************************************
       // Update the player's info and persist to Firebase
       PlayerService.updatePlayerInfo = function(player){
         console.log("Update Player Info", player);
