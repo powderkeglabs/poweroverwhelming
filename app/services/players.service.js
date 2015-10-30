@@ -4,18 +4,18 @@
 
   angular.module('partnerApp')
 
-    .service('PlayerService', ['FIREBASE_URL', 'PresenceService', '$firebaseAuth', '$firebaseObject', '$firebaseArray', function(FIREBASE_URL, PresenceService, $firebaseAuth, $firebaseObject, $firebaseArray){
+    .service('PlayerService', ['FIREBASE_URL', 'RACES', 'PresenceService', '$firebaseAuth', '$firebaseObject', '$firebaseArray', function(FIREBASE_URL, RACES, PresenceService, $firebaseAuth, $firebaseObject, $firebaseArray){
 
-      var ref = new Firebase(FIREBASE_URL + '/players');
-      var auth = $firebaseAuth(ref);
+      var playersRef = new Firebase(FIREBASE_URL + '/players');
+      var auth = $firebaseAuth(playersRef);
 
       // Initilaize the service
       var PlayerService = { auth: auth.$getAuth() };
 
 
-      // ********************************************************************
+      // ***********************************************************************
       // PUBLIC Functions
-      // ********************************************************************
+      // ***********************************************************************
 
       // ******************************************************
       // Login anonymously only if not already logged in
@@ -29,7 +29,7 @@
         // Login anonymously and save the player data
         auth.$authAnonymously().then(function(data){
           PlayerService.auth = data; // Set auth data for singleton
-          var newPlayerRef = ref.child(data.auth.uid);
+          var newPlayerRef = playersRef.child(data.auth.uid);
           var newPlayer = $firebaseObject(newPlayerRef);
 
           // 'Flatten' the data instead of nesting object
@@ -37,7 +37,7 @@
           return newPlayer.$save();
         }).then(function(savedRef){
           // Find the saved record and bind that to .currentPlayer
-          var playerRef = ref.child(savedRef.key());
+          var playerRef = playersRef.child(savedRef.key());
           PlayerService.currentPlayer = $firebaseObject(playerRef);
         }).catch(function(err){
           console.error('Error authenticating', err);
@@ -60,39 +60,28 @@
         });
       };
 
+      // ------------------------------------------------
+      // Get the list of players regardless of their logged in status
+      PlayerService.getPlayers = function(race, status){
 
-      // PlayerService.getOnlinePlayers = function(){
-      //   var query =
-      // };
+        var presenceRef = PresenceService.getPresenceRef();
+        var playersRef = (status === 'online') ? presenceRef : playersRef;
+        var query = playersRef.orderByKey().limitToLast(25); // default to 'all'
 
-
-
-      // ******************************************************
-      // Get the list of players
-      PlayerService.getPlayers = function(race){
-
-        var query;    // Used to generate firebase query;
-
-        // Validate the race before querying;
-        // @TODO: Race array should be a constant or something...
-        if (['zerg', 'protoss', 'terran'].indexOf(race) >= 0) {
-          query = ref.orderByChild('race').equalTo(race).limitToLast(25);
-        } else {
-          query = ref.orderByKey().limitToLast(25);
+        // Only query valid races
+        if (RACES.indexOf(race) >= 0) {
+          query = playersRef.orderByChild('race').equalTo(race).limitToLast(25);
         }
-
         return $firebaseArray(query);
       };
 
-
-
-      // ******************************************************
+      // ------------------------------------------------
       // Get the current player data
       PlayerService.getCurrentPlayer = function(){
         return PlayerService.currentPlayer;
       };
 
-      // ******************************************************
+      // ------------------------------------------------
       // Update the player's info and persist to Firebase
       PlayerService.updatePlayerInfo = function(player){
         console.log("Update Player Info", player);
@@ -100,14 +89,14 @@
 
 
 
-      // ***************************************************
+      // ***********************************************************************
       // Private Functions
-      // ***************************************************
+      // ***********************************************************************
 
       // Set the current player.
       // Finds and reloads the userdata if there's an existing session.
       var _setCurrentPlayer = function(uid){
-        var playerRef = ref.child(uid);
+        var playerRef = playersRef.child(uid);
         PlayerService.currentPlayer = $firebaseObject(playerRef);
         playerRef.once("value", function(snapshot){
           var data = snapshot.val();
@@ -115,11 +104,10 @@
         });
       };
 
-      // Reload the
 
-      // ***********************************************
+      // ***********************************************************************
       // WATCHERS
-      // ***********************************************
+      // ***********************************************************************
 
       // Watches for changes to auth and maintains state across sessions
       auth.$onAuth(function(authData){

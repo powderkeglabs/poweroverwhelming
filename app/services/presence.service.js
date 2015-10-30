@@ -7,7 +7,6 @@
     .service('PresenceService', ['FIREBASE_URL', function(FIREBASE_URL){
 
       var PresenceService = { userRef: null }; // Iniitalize
-
       var presenceRef = new Firebase(FIREBASE_URL + '/online');
       var onlineRef = new Firebase(FIREBASE_URL + '/.info/connected');
 
@@ -36,8 +35,8 @@
       };
 
       // Get Online players
-      PresenceService.getOnlinePlayers = function(){
-
+      PresenceService.getPresenceRef = function(){
+        return presenceRef;
       };
 
       return PresenceService;
