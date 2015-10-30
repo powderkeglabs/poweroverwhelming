@@ -5,3 +5,10 @@ footer.page-footer {
 footer.page-footer .footer-copyright {
   background-color: $primary-color-dark;
 }
+
+footer.page-footer .btn {
+  background-color: lighten($primary-color, 10%);
+}
+
+
+
