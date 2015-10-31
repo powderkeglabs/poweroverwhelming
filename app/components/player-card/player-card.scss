@@ -47,6 +47,11 @@ player-card {
   background-color: color("red", "lighten-2");
 }
 
+.player-card.Random,
+.player-card.random {
+  background-color: color("blue", "lighten-4");
+}
+
 .player-card .status {
   display: flex;
   flex-flow: row nowrap;

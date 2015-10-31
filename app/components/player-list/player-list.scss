@@ -7,3 +7,21 @@ player-list .flex {
   align-items: flex-start;
   align-content: flex-start;
 }
+
+
+// Shorten the race names in tab on small screens
+player-list .race-name-small{
+  display: block;
+}
+player-list .race-name{
+  display: none;
+}
+
+@media (min-width:500px){
+  player-list .race-name-small{
+    display: none;
+  }
+  player-list .race-name{
+    display: block;
+  }
+}
