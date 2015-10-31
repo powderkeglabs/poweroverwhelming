@@ -14,9 +14,18 @@
 
         <ul class="tabs z-depth-1">
            <li class="tab col s3"><a class="active" href="#" ng-click="ctrl.filterPlayers('all')">All</a></li>
-           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('protoss')">Protoss</a></li>
-           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('terran')">Terran</a></li>
-           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('zerg')">Zerg</a></li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('protoss')">
+             <span class="race-name">Protoss</span><span class="race-name-small">Toss</span></a>
+           </li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('terran')">
+             <span class="race-name">Terran</span><span class="race-name-small">Ter</span></a>
+           </li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('zerg')">
+             <span class="race-name">Zerg</span><span class="race-name-small">Zer</span></a>
+           </li>
+           <li class="tab col s3"><a href="#" ng-click="ctrl.filterPlayers('random')">
+             <span class="race-name">Random</span><span class="race-name-small">Rand</span></a>
+           </li>
          </ul>
       </div>
     </div>
